@@ -1,0 +1,31 @@
+server:
+  port: 8081
+
+spring:
+  application:
+    name: apigateway
+
+  cloud:
+    gateway:
+      discovery:
+        locator:
+          enabled: true
+          lower-case-service-id: true
+
+      routes:
+        - id: gastro-review
+          uri: lb://GASTROREVIEW
+          predicates:
+            - Path=/gastroreview/**
+          filters:
+            - StripPrefix=1
+
+eureka:
+  client:
+    register-with-eureka: true
+    fetch-registry: true
+    service-url:
+      defaultZone: https://eureka-server.onrender.com/eureka
+
+  instance:
+    prefer-ip-address: true
