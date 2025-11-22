@@ -1,5 +1,5 @@
 server:
-  port: ${PORT:8081}
+  port: ${PORT}
 
 spring:
   application:
@@ -13,8 +13,8 @@ spring:
           lower-case-service-id: true
 
       routes:
-        - id: gastro-review
-          uri: lb://GASTROREVIEW
+        - id: gastro-review-route
+          uri: lb://gastro-review
           predicates:
             - Path=/gastroreview/**
           filters:
@@ -25,7 +25,7 @@ eureka:
     register-with-eureka: true
     fetch-registry: true
     service-url:
-      defaultZone: https://eureka-server-abc123.onrender.com/eureka
+      defaultZone: https://eurekaserver-lzph.onrender.com/eureka/
 
   instance:
     prefer-ip-address: true
