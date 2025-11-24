@@ -28,7 +28,5 @@ eureka:
       defaultZone: https://eurekaserver-lzph.onrender.com/eureka/
 
   instance:
-    prefer-ip-address: false
-    hostname: apigateway-raml.onrender.com
-    secure-port-enabled: true
-    non-secure-port-enabled: false
+    prefer-ip-address: true
+    instance-id: ${spring.application.name}:${random.value}
