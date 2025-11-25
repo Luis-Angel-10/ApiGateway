@@ -3,7 +3,7 @@ server:
 
 spring:
   application:
-    name: APIGATEWAY
+    name: apigateway
 
   cloud:
     gateway:
@@ -13,8 +13,8 @@ spring:
           lower-case-service-id: true
 
       routes:
-        - id: gastro-review-route
-          uri: lb://GASTROREVIEW
+        - id: gastroreview-route
+          uri: lb://gastroreview
           predicates:
             - Path=/gastroreview/**
           filters:
