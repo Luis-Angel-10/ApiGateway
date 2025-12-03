@@ -1,24 +1,31 @@
-server:
-  port: ${PORT}
-
 spring:
   application:
     name: apigateway
-
   cloud:
     gateway:
-      discovery:
-        locator:
-          enabled: true
-          lower-case-service-id: true
+          discovery:
+            locator:
+              enabled: true
+              lower-case-service-id: true
 
-      routes:
-        - id: gastroreview-route
-          uri: lb://gastroreview
-          predicates:
-            - Path=/gastroreview/**
-          filters:
-            - StripPrefix=1
+          routes:
+            - id: gastroreview-route
+              uri: lb://gastroreview
+              predicates:
+                - Path=/gastroreview/**
+              filters:
+                - StripPrefix=1
+
+            - id: review-route
+              uri: lb://review
+              predicates:
+                - Path=/review/**
+              filters:
+                - StripPrefix=1
+
+server:
+  port: ${PORT:8080}
+
 
 eureka:
   client:
